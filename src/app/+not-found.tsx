@@ -1,28 +1,29 @@
-import { Stack, Link } from "expo-router";
-import { View, StyleSheet } from "react-native";
+import { Link, Stack } from 'expo-router';
+import { View } from 'react-native';
+import { PlatformColors } from '@/constants/colors';
+import { ThemedText } from '@/components/ui/themed-text';
 
 export default function NotFoundScreen() {
   return (
     <>
-      <Stack.Screen options={{ title: "Oops! Page Not Found"}} /> 
-      <View style={styles.container}>
-        <Link href="/" style={styles.button}>
-          Go back to Home Screen!
+      <Stack.Screen options={{ title: '页面不存在' }} />
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: PlatformColors.systemBackground,
+          gap: 16,
+        }}
+      >
+        <ThemedText variant="title3">页面不存在</ThemedText>
+        <Link href={'/home' as never}>
+          <ThemedText variant="callout" style={{ color: PlatformColors.systemBlue }}>
+            返回首页
+          </ThemedText>
         </Link>
       </View>
     </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  button: {
-    fontSize: 20,
-    color: "#007AFF",
-    textDecorationLine: "underline",
-  },
-});
